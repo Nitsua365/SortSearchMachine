@@ -1,9 +1,3 @@
-//
-//  NonInplaceSortAlgs.h
-//  SortSearchMachine
-//
-//  Created by Austin Blanchard  on 7/30/21.
-//
 
 #ifndef NonInplaceSortAlgs_h
 #define NonInplaceSortAlgs_h

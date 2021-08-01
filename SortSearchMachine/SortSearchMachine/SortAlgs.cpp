@@ -167,6 +167,21 @@ void SortingAlgorithms::insertionSort(int a[]) {
     
 }
 
+void SortingAlgorithms::selectionSort(int a[]) {
+    int minNdx = 0, j = 0;
+    
+    for (int i = 0; i < this->size - 1; i++) {
+        
+        minNdx = i;
+        for (int j = i + 1; j < this->size; j++) {
+            if (a[j] < a[minNdx])
+                minNdx = j;
+        }
+        
+        swap(a[i], a[minNdx]);
+    }
+}
+
 void SortingAlgorithms::printArr(ostream &os, int a[]) {
     for (int i = 0; i < this->size -1; i++) {
         cout << a[i] << endl;
@@ -191,6 +206,12 @@ int SortingAlgorithms::getMin(int a[]) {
     return min;
 }
 
-void SortingAlgorithms::bogoSort(int a[]) {
+void SortingAlgorithms::bogoSort(int a[], SearchAlgorithms &verify) {
+    srand(time(0));
     
+    while (!verify.verifySort(a, this->size)) {
+        for (int i = 0; i < this->size; i++) {
+            swap(a[i], a[rand() % this->size]);
+        }
+    }
 }

@@ -35,7 +35,7 @@ int SearchAlgorithms::LinearSearch(int a[], int key, const int& SIZE) {
 
 bool SearchAlgorithms::verifySort(int a[], const int& SIZE) {
     
-    int count = SIZE - 1;
+    int count = SIZE;
     
     while (count-- > 1) {
         if (a[count] < a[count - 1])

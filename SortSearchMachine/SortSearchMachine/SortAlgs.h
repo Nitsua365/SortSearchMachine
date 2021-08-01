@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <climits>
+#include "SearchAlgs.hpp"
 
 using namespace std;
 
@@ -36,7 +37,7 @@ public:
     void selectionSort(int[]);
     void bubbleSort(int[], const int&);
     void insertionSort(int[]);
-    void bogoSort(int[]);
+    void bogoSort(int[], SearchAlgorithms&);
     
     int getSize() const { return this->size; }
     

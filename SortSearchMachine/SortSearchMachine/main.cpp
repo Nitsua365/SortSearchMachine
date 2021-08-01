@@ -4,7 +4,6 @@
 #include <string>
 #include <ctime>
 #include "SortAlgs.h"
-#include "SearchAlgs.hpp"
 #include "NonInplaceSortAlgs.h"
 
 using namespace std;
@@ -120,7 +119,7 @@ int main(int argc, const char * argv[]) {
             SortingAlgorithms sorter(arraySize);
             
             start = clock();
-//            sorter.selectionSort(mainArray);
+            sorter.selectionSort(mainArray);
             end = clock();
             
             break;
@@ -149,8 +148,12 @@ int main(int argc, const char * argv[]) {
             
             SortingAlgorithms sorter(arraySize);
             
+            if (arraySize >= 12) {
+                cout << endl << "This could take a while..." << endl;
+            }
+            
             start = clock();
-//            sorter.bogoSort(mainArray);
+            sorter.bogoSort(mainArray, searcher);
             end = clock();
             
             break;
@@ -166,15 +169,13 @@ int main(int argc, const char * argv[]) {
     }
     cout << "PASSED" << endl << endl;
     
-    cout << "Sort Completed in " << (end - start) / (float)CLOCKS_PER_SEC << " seconds" << endl;
+    cout << "Sort Completed in " << (end - start) / (float)CLOCKS_PER_SEC << " seconds" << endl << endl;
     
     // create output file for the sorted result
     ofstream outFile(inFileName.substr(0, inFileName.find(".txt")) + "_SORTED.txt");
     
     count = 0;
     while (count < arraySize && outFile << mainArray[count++]) { outFile << endl; }
-    
-    
     
     char searchYes = 'n';
     int searchAlg = 1;
