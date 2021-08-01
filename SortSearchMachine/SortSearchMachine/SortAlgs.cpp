@@ -190,3 +190,7 @@ int SortingAlgorithms::getMin(int a[]) {
     
     return min;
 }
+
+void SortingAlgorithms::bogoSort(int a[]) {
+    
+}

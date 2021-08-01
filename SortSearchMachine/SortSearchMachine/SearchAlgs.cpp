@@ -28,17 +28,18 @@ int SearchAlgorithms::BinarySearch(int a[], int key, const int& SIZE) {
 
 int SearchAlgorithms::LinearSearch(int a[], int key, const int& SIZE) {
     for (int i = 0; i < SIZE - 1; i++) {
-        if (a[i] == key) { return key; }
+        if (a[i] == key) { return i; }
     }
     return -1;
 }
 
 bool SearchAlgorithms::verifySort(int a[], const int& SIZE) {
     
-    for (int i = 0; i < SIZE - 1; i++) {
-        if (BinarySearch(a, a[i], SIZE) == -1) {
+    int count = 0;
+    
+    while (count-- > 1) {
+        if (a[count] < a[count - 1])
             return false;
-        }
     }
     
     return true;

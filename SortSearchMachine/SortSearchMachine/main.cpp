@@ -158,16 +158,15 @@ int main(int argc, const char * argv[]) {
     }
     
     cout << "Verifying Sort... ";
-    if (!searcher.verifySort(mainArray, arraySize)) {
+    bool isValidSort = searcher.verifySort(mainArray, arraySize);
+    if (!isValidSort) {
         inFile.close();
         cerr << "FILE IS NOT SORTED" << endl;
-        exit(-1);
+        return -1;
     }
     cout << "FILE IS SORTED" << endl << endl;
     
-    cout << endl;
     cout << "Sort Completed in " << (end - start) / (float)CLOCKS_PER_SEC << " seconds" << endl;
-    
     
     // create output file for the sorted result
     ofstream outFile(inFileName.substr(0, inFileName.find(".txt")) + "_SORTED.txt");
@@ -175,6 +174,63 @@ int main(int argc, const char * argv[]) {
     count = 0;
     while (count < arraySize && outFile << mainArray[count++]) { outFile << endl; }
     
+    
+    
+    char searchYes = 'n';
+    int searchAlg = 1;
+    int searchKey = 0;
+    int searchNdx = 0;
+    
+    // prompting user to search the list
+    do {
+        cout << "Would you like to search an item? (y/n): ";
+        cin >> searchYes;
+        cout << endl;
+    
+        if (toupper(searchYes) == 'Y') {
+            cout << "Search Algs: " << endl;
+            cout << "1. Linear Search" << endl;
+            cout << "2. Binary Search" << endl << endl;
+            
+            cout << "Select Search Algorithm: ";
+            cin >> searchAlg;
+            cout << endl;
+            
+            cout << "Input search key: ";
+            cin >> searchKey;
+            cout << endl;
+            
+            switch (searchAlg) {
+                case 1:
+                    
+                    if ((searchNdx = searcher.LinearSearch(mainArray, searchKey, arraySize)) == -1) {
+                        cout << "Item NOT found" << endl;
+                    }
+                    else {
+                        cout << "Item found at index: " << searchNdx << endl;
+                    }
+                    
+                    break;
+                case 2:
+                    
+                    if ((searchNdx = searcher.BinarySearch(mainArray, searchKey, arraySize)) == -1) {
+                        cout << "Item NOT found" << endl;
+                    }
+                    else {
+                        cout << "Item found at index: " << searchNdx << endl;
+                    }
+                    
+                    break;
+                default:
+                    cerr << "Invalid choice" << endl;
+            }
+            
+        }
+        
+    }
+    while (toupper(searchYes) == 'Y');
+    
+        
     
     
     return 0;
