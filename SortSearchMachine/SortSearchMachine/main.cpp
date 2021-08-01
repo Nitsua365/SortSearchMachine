@@ -14,12 +14,15 @@ int main(int argc, const char * argv[]) {
     ifstream inFile;
     int arraySize = 0;
     
+    // prompt the file name
     cout << "Enter a file name of with integers: ";
     cin >> inFileName;
     cout << inFileName << endl;
     
+    // open the input file
     inFile.open(inFileName, ios::binary | ios::in);
     
+    // if the input file doesn't exist
     if (!inFile) {
         cerr << "INVALID FILE" << endl;
         inFile.close();
@@ -39,21 +42,26 @@ int main(int argc, const char * argv[]) {
     inFile.clear();
     inFile.seekg(0, ios::beg);
     
+    // initialize array
     while (count < arraySize && inFile >> temp) { mainArray[count++] = temp; }
     
+    // display sorting size
     cout << "Sorting " << arraySize << " items" << endl << endl;
     
+
     const int NUM_ALGS = 9;
     const string ALGS[NUM_ALGS] = {"Merge Sort", "Quick Sort", "Heap Sort", "Bubble Sort",
                             "Insertion Sort", "Selection Sort", "Bucket Sort", "Radix Sort",
                             "Bogo Sort"
                             };
     
+    // print the sorting algorithm menu
     cout << "Sorting Algorithms: " << endl;
     for (int i = 0; i < NUM_ALGS; i++) {
         cout << (i + 1) << ". " << ALGS[i] << endl;
     }
     
+    // prompt the user to select sorting algorithm
     cout << endl;
     cout << "Select Sorting algorithm: ";
     cin >> selection;
@@ -62,6 +70,7 @@ int main(int argc, const char * argv[]) {
     
     time_t start, end;
     
+    // switch to correct sorting algorithm based on user choice
     switch (selection) {
         case 1: {
             
@@ -160,6 +169,7 @@ int main(int argc, const char * argv[]) {
         }
     }
     
+    // verify if the array is sorted
     cout << "Verifying Sort... ";
     bool isValidSort = searcher.verifySort(mainArray, arraySize);
     if (!isValidSort) {
@@ -169,11 +179,13 @@ int main(int argc, const char * argv[]) {
     }
     cout << "PASSED" << endl << endl;
     
+    // display the time it took to sort
     cout << "Sort Completed in " << (end - start) / (float)CLOCKS_PER_SEC << " seconds" << endl << endl;
     
     // create output file for the sorted result
     ofstream outFile(inFileName.substr(0, inFileName.find(".txt")) + "_SORTED.txt");
     
+    // write the sorted array to output file
     count = 0;
     while (count < arraySize && outFile << mainArray[count++]) { outFile << endl; }
     
