@@ -161,10 +161,10 @@ int main(int argc, const char * argv[]) {
     bool isValidSort = searcher.verifySort(mainArray, arraySize);
     if (!isValidSort) {
         inFile.close();
-        cerr << "FILE IS NOT SORTED" << endl;
+        cerr << "FAILED" << endl;
         return -1;
     }
-    cout << "FILE IS SORTED" << endl << endl;
+    cout << "PASSED" << endl << endl;
     
     cout << "Sort Completed in " << (end - start) / (float)CLOCKS_PER_SEC << " seconds" << endl;
     
@@ -196,12 +196,12 @@ int main(int argc, const char * argv[]) {
             cin >> searchAlg;
             cout << endl;
             
-            cout << "Input search key: ";
-            cin >> searchKey;
-            cout << endl;
-            
             switch (searchAlg) {
                 case 1:
+                    
+                    cout << "Input search key: ";
+                    cin >> searchKey;
+                    cout << endl;
                     
                     if ((searchNdx = searcher.LinearSearch(mainArray, searchKey, arraySize)) == -1) {
                         cout << "Item NOT found" << endl;
@@ -213,6 +213,10 @@ int main(int argc, const char * argv[]) {
                     break;
                 case 2:
                     
+                    cout << "Input search key: ";
+                    cin >> searchKey;
+                    cout << endl;
+                    
                     if ((searchNdx = searcher.BinarySearch(mainArray, searchKey, arraySize)) == -1) {
                         cout << "Item NOT found" << endl;
                     }
@@ -222,16 +226,13 @@ int main(int argc, const char * argv[]) {
                     
                     break;
                 default:
-                    cerr << "Invalid choice" << endl;
+                    cerr << "Invalid menu item" << endl;
             }
             
         }
         
     }
     while (toupper(searchYes) == 'Y');
-    
-        
-    
     
     return 0;
 }
